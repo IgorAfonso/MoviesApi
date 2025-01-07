@@ -1,0 +1,34 @@
+[
+  {
+    "ContainingType": "MoviesApi.Controllers.MovieManipulationController",
+    "Method": "GetMovieByName",
+    "RelativePath": "getMovie",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "MovieName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MoviesApi.Controllers.MovieManipulationController",
+    "Method": "InsertMovie",
+    "RelativePath": "postMovie",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "movie",
+        "Type": "MoviesApi.Models.MovieModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

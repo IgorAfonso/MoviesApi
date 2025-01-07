@@ -1,0 +1,103 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "MoviesApi",
+    "version": "1.0"
+  },
+  "paths": {
+    "/getMovie": {
+      "get": {
+        "tags": [
+          "MovieManipulation"
+        ],
+        "parameters": [
+          {
+            "name": "MovieName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/postMovie": {
+      "post": {
+        "tags": [
+          "MovieManipulation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MovieModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MovieModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MovieModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MovieModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "updateDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "duration": {
+            "type": "string",
+            "format": "time",
+            "nullable": true
+          },
+          "ticketValue": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

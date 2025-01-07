@@ -1,0 +1,33 @@
+Api com foco em trainamento.
+
+Linguagem C#
+
+CRUD
+- Criar um filme - OK
+- Deletar um filme
+- Atualizar um filme
+- Pegar um filme
+- Pegar filmes por paginação
+
+AUTENTICAÇÃO
+- Realizar login para usar a api
+- Inserir novo usuário
+- Deletar Usuário
+- Atualizar dados permitidos do usuário
+
+EXTRAS
+- Devolver uma imagem de capa do filme
+- Usar postgres (Entity Framework)
+- Manipular Excessões
+
+
+
+{
+  "id": 0,
+  "title": "O Resgate do Soldado Ryan",
+  "createDate": "2025-01-07T00:39:24.165Z",
+  "updateDate": "2025-01-07T00:39:24.165Z",
+  "description": "Filme da Segunda Guerra Mundial",
+  "duration": "02:50:00",
+  "ticketValue": 15.99
+}
