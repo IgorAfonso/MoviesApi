@@ -1,1 +1,31 @@
-{"Id":0,"Title":"O Resgate do Soldado Ryan","CreateDate":"2025-01-07T00:39:24.165Z","UpdateDate":"2025-01-07T00:39:24.165Z","Description":"Filme da Segunda Guerra Mundial","Duration":"02:50:00","TicketValue":15.99}
+{
+  "Data": [
+    {
+      "Id": 0,
+      "Title": "O Resgate do Soldado Ryan",
+      "CreateDate": "2025-01-07T00:39:24.165Z",
+      "UpdateDate": "2025-01-07T00:39:24.165Z",
+      "Description": "Filme da Segunda Guerra Mundial",
+      "Duration": "02:50:00",
+      "TicketValue": 15.99
+    },
+    {
+      "Id": 1,
+      "Title": "O Resgate do Soldado Ryan",
+      "CreateDate": "2025-01-07T00:39:24.165Z",
+      "UpdateDate": "2025-01-07T00:39:24.165Z",
+      "Description": "Filme da Segunda Guerra Mundial",
+      "Duration": "02:50:00",
+      "TicketValue": 15.99
+    },
+    {
+      "Id": 2,
+      "Title": "O Resgate do Soldado Ryan",
+      "CreateDate": "2025-01-07T00:39:24.165Z",
+      "UpdateDate": "2025-01-07T00:39:24.165Z",
+      "Description": "Filme da Segunda Guerra Mundial",
+      "Duration": "02:50:00",
+      "TicketValue": 15.99
+    }
+  ]
+}

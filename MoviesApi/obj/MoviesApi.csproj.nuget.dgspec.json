@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\MoviesApi\\MoviesApi\\MoviesApi\\MoviesApi.csproj": {}
+    "C:\\Repositories\\MovieApi\\MoviesApi\\MoviesApi.csproj": {}
   },
   "projects": {
-    "C:\\MoviesApi\\MoviesApi\\MoviesApi\\MoviesApi.csproj": {
+    "C:\\Repositories\\MovieApi\\MoviesApi\\MoviesApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\MoviesApi\\MoviesApi\\MoviesApi\\MoviesApi.csproj",
+        "projectUniqueName": "C:\\Repositories\\MovieApi\\MoviesApi\\MoviesApi.csproj",
         "projectName": "MoviesApi",
-        "projectPath": "C:\\MoviesApi\\MoviesApi\\MoviesApi\\MoviesApi.csproj",
+        "projectPath": "C:\\Repositories\\MovieApi\\MoviesApi\\MoviesApi.csproj",
         "packagesPath": "C:\\Users\\Igor Afonso\\.nuget\\packages\\",
-        "outputPath": "C:\\MoviesApi\\MoviesApi\\MoviesApi\\obj\\",
+        "outputPath": "C:\\Repositories\\MovieApi\\MoviesApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

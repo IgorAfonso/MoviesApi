@@ -17,6 +17,27 @@
   },
   {
     "ContainingType": "MoviesApi.Controllers.MovieManipulationController",
+    "Method": "GetMovieByName",
+    "RelativePath": "getMovies",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MoviesApi.Controllers.MovieManipulationController",
     "Method": "InsertMovie",
     "RelativePath": "postMovie",
     "HttpMethod": "POST",

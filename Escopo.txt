@@ -6,8 +6,8 @@ CRUD
 - Criar um filme - OK
 - Deletar um filme
 - Atualizar um filme
-- Pegar um filme
-- Pegar filmes por paginação
+- Pegar um filme - OK
+- Pegar filmes por paginação - OK
 
 AUTENTICAÇÃO
 - Realizar login para usar a api
@@ -19,8 +19,7 @@ EXTRAS
 - Devolver uma imagem de capa do filme
 - Usar postgres (Entity Framework)
 - Manipular Excessões
-
-
+- Corrigir bug de paginação (com muitos dados vai quebrar)
 
 {
   "id": 0,
