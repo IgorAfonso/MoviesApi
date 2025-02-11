@@ -29,17 +29,20 @@ namespace MoviesApi.Controllers
             }
             catch (Exception ex)
             {
-                return CustomResponse(null, false, ex.Message);
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
 
         [HttpGet()]
-        [Route("/getMovies")]
+        [Route("/getMoviesPaginated")]
         public async Task<IActionResult> GetMovieByName([FromQuery] int pageNumber, [FromQuery] int pageSize)
         {
             try
             {
-                var result = await _movieManipulationService.GetMoviesPaginated(pageNumber, pageSize);
+                var result = await _movieManipulationService.GetMoviesPaginated(
+                    pageNumber,
+                    pageSize);
 
                 if (!result.success)
                 {
@@ -50,7 +53,8 @@ namespace MoviesApi.Controllers
             }
             catch (Exception ex)
             {
-                return CustomResponse(null, false, ex.Message);
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -65,7 +69,30 @@ namespace MoviesApi.Controllers
             }
             catch (Exception ex)
             {
-                return PostCustomResponse(null, false, ex.Message);
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPatch()]
+        [Route("/updateMovie")]
+        public async Task<IActionResult> UpdateMovie([FromQuery] int MovieId, [FromBody] MovieModel movie)
+        {
+            try
+            {
+                var result = await _movieManipulationService.UpdateMovieById(MovieId, movie);
+
+                if (!result.success)
+                {
+                    return CustomResponse(null, false, result.message);
+                }
+                
+                return CustomResponse(result.Item1, result.success, result.message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
     }

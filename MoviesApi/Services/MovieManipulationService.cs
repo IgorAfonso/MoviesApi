@@ -11,85 +11,82 @@ namespace MoviesApi.Services
         private string path = "./Repository/TempDataBase.json";
         public async Task<(MovieModel?, bool success, string message)> InsertMovieOnDb(MovieModel movie)
         {
-            try
+            if (!File.Exists(path))
             {
-                if (!File.Exists(path))
-                {
-                    File.WriteAllText(path, "{ \"Data\": [] }");
-                }              
+                File.WriteAllText(path, "{ \"Data\": [] }");
+            }              
                 
-                string jsonContent = File.ReadAllText(path);
-                var jsonData = JsonSerializer.Deserialize<RootObject>(jsonContent);
+            string jsonContent = File.ReadAllText(path);
+            var jsonData = JsonSerializer.Deserialize<RootObject>(jsonContent);
 
-                jsonData.Data.Add(movie);
+            jsonData.Data.Add(movie);
 
-                string updatedJson = JsonSerializer.Serialize(jsonData, new JsonSerializerOptions { WriteIndented = true });
-                File.WriteAllText(path, updatedJson);
+            string updatedJson = JsonSerializer.Serialize(jsonData,
+                new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(path, updatedJson);
 
-                if (movie != null)
-                {
-                    return (movie, true, "Sucesso ao Inserir o Filme");
-                }
-                return (null, false, "Falha ao Inserir o Filme");
-            }
-            catch (Exception)
+            if (movie != null)
             {
-                throw;
+                return (movie, true, "Sucesso ao Inserir o Filme");
             }
+            return (null, false, "Falha ao Inserir o Filme");
         }
-
-
         public async Task<(IEnumerable<MovieModel?>, bool success, string message)> GetMovieByName(string MovieName)
         {
-            try
+            if (!File.Exists(path))
             {
-                if (!File.Exists(path))
-                {
-                    File.WriteAllText(path, "{ \"Data\": [] }");
-                }
-
-                string jsonContent = File.ReadAllText(path);
-                var jsonData = JsonSerializer.Deserialize<RootObject>(jsonContent);
-
-                var returnedValue = jsonData.Data.ToList().Where(x => string.Equals(x.Title, MovieName));
-
-                if (returnedValue.Count().Equals(0))
-                {
-                    return (returnedValue, false, "Falha ao Encontrar o Filme Enviado");
-                }
-                return (returnedValue, true, "Filme Encontrado.");
+                File.WriteAllText(path, "{ \"Data\": [] }");
             }
-            catch (Exception)
+
+            string jsonContent = File.ReadAllText(path);
+            var jsonData = JsonSerializer.Deserialize<RootObject>(jsonContent);
+
+            var returnedValue = jsonData.Data.ToList().Where(x => string.Equals(x.Title, MovieName)).ToList();
+
+            if (returnedValue.Count().Equals(0))
             {
-                throw;
+                return (returnedValue, false, "Falha ao Encontrar o Filme Enviado");
             }
+            return (returnedValue, true, "Filme Encontrado.");
         }
-
-
         public async Task<(IEnumerable<MovieModel?>, bool success, string message)> GetMoviesPaginated(int pageNumber, int pageSize)
         {
-            try
+            string jsonContent = File.ReadAllText(path);
+            var jsonData = JsonSerializer.Deserialize<RootObject>(jsonContent);
+
+            var paginatedValues = jsonData.Data.ToList().Skip((pageNumber -1) * pageSize).Take(pageSize).ToList();
+
+            if (paginatedValues.Count().Equals(0))
             {
-                if (!File.Exists(path))
-                {
-                    File.WriteAllText(path, "{ \"Data\": [] }");
-                }
-
-                string jsonContent = File.ReadAllText(path);
-                var jsonData = JsonSerializer.Deserialize<RootObject>(jsonContent);
-
-                var paginatedValues = jsonData.Data.ToList().Skip((pageNumber -1) * pageSize).Take(pageSize);
-
-                if (paginatedValues.Count().Equals(0))
-                {
-                    return (paginatedValues, false, "Falha ao Encontrar Dados");
-                }
-                return (paginatedValues, true, "Dados Encontrados.");
+                return (paginatedValues, false, "Falha ao Encontrar Dados");
             }
-            catch (Exception)
+            return (paginatedValues, true, "Dados Encontrados.");
+        }
+
+        public async Task<(IEnumerable<MovieModel?>, bool success, string message)> UpdateMovieById(int ID, MovieModel movie)
+        {
+            string jsonContent = File.ReadAllText(path);
+            var jsonData = JsonSerializer.Deserialize<RootObject>(jsonContent);
+
+            var returnedValue = jsonData.Data.ToList().Where(x => x.Id == ID).ToList();
+
+            if (returnedValue.Count() != 0)
             {
-                throw;
+                var valuesWithoutId = returnedValue.Where(x => x.Id != ID).ToList();
+                if (valuesWithoutId.Count() < returnedValue.Count())
+                {
+                    valuesWithoutId.Add(movie);
+                    string updatedJson = JsonSerializer.Serialize(valuesWithoutId,
+                        new JsonSerializerOptions { WriteIndented = true });
+                    
+                    File.WriteAllText(path, updatedJson);
+
+                    return (valuesWithoutId, true, "Sucesso ao Atualizar o Filme");
+                }
+                return (null, false, $"Não Foi possível atualziar de ID: {ID}");
             }
+            
+            return (null, false, $"Falha ao Atualizar o Filme de ID: {ID}");
         }
     }
 }

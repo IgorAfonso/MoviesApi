@@ -547,31 +547,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Igor Afonso\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/home/igor_afonso/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Repositories\\MovieApi\\MoviesApi\\MoviesApi.csproj",
+      "projectUniqueName": "/home/igor_afonso/Documentos/Repository/MovieApi/MoviesApi/MoviesApi.csproj",
       "projectName": "MoviesApi",
-      "projectPath": "C:\\Repositories\\MovieApi\\MoviesApi\\MoviesApi.csproj",
-      "packagesPath": "C:\\Users\\Igor Afonso\\.nuget\\packages\\",
-      "outputPath": "C:\\Repositories\\MovieApi\\MoviesApi\\obj\\",
+      "projectPath": "/home/igor_afonso/Documentos/Repository/MovieApi/MoviesApi/MoviesApi.csproj",
+      "packagesPath": "/home/igor_afonso/.nuget/packages/",
+      "outputPath": "/home/igor_afonso/Documentos/Repository/MovieApi/MoviesApi/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Igor Afonso\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/igor_afonso/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -584,13 +577,7 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "all"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -624,7 +611,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.112/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

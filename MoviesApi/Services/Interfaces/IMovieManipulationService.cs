@@ -6,6 +6,11 @@ namespace MoviesApi.Services.Interfaces
     {
         public Task<(MovieModel?, bool success, string message)> InsertMovieOnDb(MovieModel movie);
         public Task<(IEnumerable<MovieModel?>, bool success, string message)> GetMovieByName(string MovieName);
-        public Task<(IEnumerable<MovieModel?>, bool success, string message)> GetMoviesPaginated(int pageNumber, int pageSize);
+
+        public Task<(IEnumerable<MovieModel?>, bool success, string message)> GetMoviesPaginated(int pageNumber,
+            int pageSize);
+
+        public Task<(IEnumerable<MovieModel?>, bool success, string message)> UpdateMovieById(int ID,
+            MovieModel movie);
     }
 }

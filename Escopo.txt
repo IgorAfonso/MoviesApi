@@ -20,6 +20,7 @@ EXTRAS
 - Usar postgres (Entity Framework)
 - Manipular Excessões
 - Corrigir bug de paginação (com muitos dados vai quebrar)
+- Implementar validações no UpdateMovie e no InsertMovie para não permitir valores faltando
 
 {
   "id": 0,
