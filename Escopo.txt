@@ -17,7 +17,7 @@ AUTENTICAÇÃO
 
 EXTRAS
 - Devolver uma imagem de capa do filme
-- Usar postgres (Entity Framework)
+- Usar postgres (Entity Framework) - OK
 - Manipular Excessões
 - Corrigir bug de paginação (com muitos dados vai quebrar)
 - Implementar validações no UpdateMovie e no InsertMovie para não permitir valores faltando

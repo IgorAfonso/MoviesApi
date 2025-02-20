@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using Microsoft.AspNetCore.Http.Json;
+using Microsoft.EntityFrameworkCore;
+using MoviesApi.Data;
 using MoviesApi.Models;
 using MoviesApi.Services.Interfaces;
 
@@ -8,46 +10,29 @@ namespace MoviesApi.Services
 {
     public class MovieManipulationService : IMovieManipulationService
     {
+        private AppDbContext _iDbContext;
         private string path = "./Repository/TempDataBase.json";
+
+        public MovieManipulationService(AppDbContext iDbContext)
+        {
+            _iDbContext = iDbContext;
+        }
+
         public async Task<(MovieModel?, bool success, string message)> InsertMovieOnDb(MovieModel movie)
         {
-            if (!File.Exists(path))
-            {
-                File.WriteAllText(path, "{ \"Data\": [] }");
-            }              
-                
-            string jsonContent = File.ReadAllText(path);
-            var jsonData = JsonSerializer.Deserialize<RootObject>(jsonContent);
-
-            jsonData.Data.Add(movie);
-
-            string updatedJson = JsonSerializer.Serialize(jsonData,
-                new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(path, updatedJson);
-
-            if (movie != null)
-            {
-                return (movie, true, "Sucesso ao Inserir o Filme");
-            }
-            return (null, false, "Falha ao Inserir o Filme");
+            await _iDbContext.AddAsync(movie);
+            await _iDbContext.SaveChangesAsync();
+            return (movie, true, "Success to Insert your Movie");
         }
-        public async Task<(IEnumerable<MovieModel?>, bool success, string message)> GetMovieByName(string MovieName)
+        public async Task<(List<MovieModel?>, bool success, string message)> GetMovieByName(string MovieName)
         {
-            if (!File.Exists(path))
-            {
-                File.WriteAllText(path, "{ \"Data\": [] }");
-            }
-
-            string jsonContent = File.ReadAllText(path);
-            var jsonData = JsonSerializer.Deserialize<RootObject>(jsonContent);
-
-            var returnedValue = jsonData.Data.ToList().Where(x => string.Equals(x.Title, MovieName)).ToList();
-
-            if (returnedValue.Count().Equals(0))
-            {
-                return (returnedValue, false, "Falha ao Encontrar o Filme Enviado");
-            }
-            return (returnedValue, true, "Filme Encontrado.");
+            var dbData = await _iDbContext.Movies.AnyAsync(movie => movie.Title == MovieName); 
+            var returnData = new List<MovieModel>();
+            
+            if(returnData.Count == 0)
+                return (null, false, "Movie not found");
+            
+            return (returnData, true, "Filme Encontrado.");
         }
         public async Task<(IEnumerable<MovieModel?>, bool success, string message)> GetMoviesPaginated(int pageNumber, int pageSize)
         {
