@@ -8,44 +8,27 @@ using MoviesApi.Services.Interfaces;
 
 namespace MoviesApi.Services
 {
-    public class MovieManipulationService : IMovieManipulationService
+    public class MovieManipulationService(AppDbContext iDbContext) : IMovieManipulationService
     {
-        private AppDbContext _iDbContext;
         private string path = "./Repository/TempDataBase.json";
-
-        public MovieManipulationService(AppDbContext iDbContext)
-        {
-            _iDbContext = iDbContext;
-        }
-
         public async Task<(MovieModel?, bool success, string message)> InsertMovieOnDb(MovieModel movie)
         {
-            await _iDbContext.AddAsync(movie);
-            await _iDbContext.SaveChangesAsync();
+            await iDbContext.AddAsync(movie);
+            await iDbContext.SaveChangesAsync();
             return (movie, true, "Success to Insert your Movie");
         }
-        public async Task<(List<MovieModel?>, bool success, string message)> GetMovieByName(string MovieName)
+        public async Task<(List<MovieModel?>, bool success, string message)> GetMovieByName(string? movieName)
         {
-            var dbData = await _iDbContext.Movies.AnyAsync(movie => movie.Title == MovieName); 
-            var returnData = new List<MovieModel>();
+            if (movieName is null)
+                return (null, false, "Insert a Movie Name")!;
             
-            if(returnData.Count == 0)
-                return (null, false, "Movie not found");
-            
-            return (returnData, true, "Filme Encontrado.");
+            var dbData = await iDbContext.Movies.Where(movie => movie.Title!.Contains(movieName)).ToListAsync(); 
+            return (dbData.Count == 0 ? (null, false, "Movie not found")! : (dbData, true, "Success to Find Movie"))!;
         }
         public async Task<(IEnumerable<MovieModel?>, bool success, string message)> GetMoviesPaginated(int pageNumber, int pageSize)
         {
-            string jsonContent = File.ReadAllText(path);
-            var jsonData = JsonSerializer.Deserialize<RootObject>(jsonContent);
-
-            var paginatedValues = jsonData.Data.ToList().Skip((pageNumber -1) * pageSize).Take(pageSize).ToList();
-
-            if (paginatedValues.Count().Equals(0))
-            {
-                return (paginatedValues, false, "Falha ao Encontrar Dados");
-            }
-            return (paginatedValues, true, "Dados Encontrados.");
+            var paginatedValues = await iDbContext.Movies.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+            return paginatedValues.Count == 0 ? (paginatedValues, false, "Failed to Found Movies") : (paginatedValues, true, "Movies Founded");
         }
 
         public async Task<(IEnumerable<MovieModel?>, bool success, string message)> UpdateMovieById(int ID, MovieModel movie)
@@ -55,7 +38,7 @@ namespace MoviesApi.Services
 
             var returnedValue = jsonData.Data.ToList().Where(x => x.Id == ID).ToList();
 
-            if (returnedValue.Count() != 0)
+            if(returnedValue.Count != 0)
             {
                 var valuesWithoutId = returnedValue.Where(x => x.Id != ID).ToList();
                 if (valuesWithoutId.Count() < returnedValue.Count())

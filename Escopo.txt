@@ -23,11 +23,19 @@ EXTRAS
 - Implementar validações no UpdateMovie e no InsertMovie para não permitir valores faltando
 
 {
-  "id": 0,
   "title": "O Resgate do Soldado Ryan",
   "createDate": "2025-01-07T00:39:24.165Z",
   "updateDate": "2025-01-07T00:39:24.165Z",
   "description": "Filme da Segunda Guerra Mundial",
   "duration": "02:50:00",
   "ticketValue": 15.99
+}
+
+{
+  "title": "MIB",
+  "createDate": "2025-02-20 09:27:00",
+  "updateDate": "2025-02-20 09:27:00",
+  "description": "Homens de Preto",
+  "duration": "03:46:00",
+  "ticketValue": 36.82
 }

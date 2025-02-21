@@ -14,18 +14,12 @@ namespace MoviesApi.Controllers
 
         [HttpGet()]
         [Route("/getMovie")]
-        public async Task<IActionResult> GetMovieByName([FromQuery] string MovieName)
+        public async Task<IActionResult> GetMovieByName([FromQuery] string? movieName)
         {
             try
             {
-                var result = await _movieManipulationService.GetMovieByName(MovieName);
-
-                if (!result.success)
-                {
-                    return CustomResponse(null, false, result.message);
-                }
-
-                return CustomResponse(result.Item1, result.success, result.message);
+                var result = await _movieManipulationService.GetMovieByName(movieName);
+                return !result.success ? CustomResponse(null, false, result.message) : CustomResponse(result.Item1, result.success, result.message);
             }
             catch (Exception ex)
             {
@@ -60,11 +54,11 @@ namespace MoviesApi.Controllers
 
         [HttpPost()]
         [Route("/postMovie")]
-        public async Task<IActionResult> InsertMovie([FromBody] MovieModel movie)
+        public async Task<IActionResult> InsertMovie([FromBody] MovieModel movieObject)
         {
             try
             {
-                var result = await _movieManipulationService.InsertMovieOnDb(movie);
+                var result = await _movieManipulationService.InsertMovieOnDb(movieObject);
                 return PostCustomResponse(result.Item1, result.success, result.message);
             }
             catch (Exception ex)
