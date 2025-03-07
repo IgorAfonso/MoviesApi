@@ -9,5 +9,6 @@
         public string? Description { get; set; }
         public TimeOnly? Duration { get; set; }
         public decimal? TicketValue { get; set; }
+        public DateTime? LastUpdate { get; set; }
     }
 }

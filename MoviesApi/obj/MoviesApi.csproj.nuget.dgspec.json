@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/igorafonso/Documents/Personal_Repository/MovieApi/MoviesApi/MoviesApi.csproj": {}
+    "/home/igor_afonso/Documentos/Repository/MovieApi/MoviesApi/MoviesApi.csproj": {}
   },
   "projects": {
-    "/home/igorafonso/Documents/Personal_Repository/MovieApi/MoviesApi/MoviesApi.csproj": {
+    "/home/igor_afonso/Documentos/Repository/MovieApi/MoviesApi/MoviesApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/igorafonso/Documents/Personal_Repository/MovieApi/MoviesApi/MoviesApi.csproj",
+        "projectUniqueName": "/home/igor_afonso/Documentos/Repository/MovieApi/MoviesApi/MoviesApi.csproj",
         "projectName": "MoviesApi",
-        "projectPath": "/home/igorafonso/Documents/Personal_Repository/MovieApi/MoviesApi/MoviesApi.csproj",
-        "packagesPath": "/home/igorafonso/.nuget/packages/",
-        "outputPath": "/home/igorafonso/Documents/Personal_Repository/MovieApi/MoviesApi/obj/",
+        "projectPath": "/home/igor_afonso/Documentos/Repository/MovieApi/MoviesApi/MoviesApi.csproj",
+        "packagesPath": "/home/igor_afonso/.nuget/packages/",
+        "outputPath": "/home/igor_afonso/Documentos/Repository/MovieApi/MoviesApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/igorafonso/.nuget/NuGet/NuGet.Config"
+          "/home/igor_afonso/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"

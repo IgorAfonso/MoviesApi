@@ -9,7 +9,7 @@ namespace MoviesApi.Services.Interfaces
         public Task<(IEnumerable<MovieModel?>, bool success, string message)> GetMoviesPaginated(int pageNumber,
             int pageSize);
 
-        public Task<(IEnumerable<MovieModel?>, bool success, string message)> UpdateMovieById(int ID,
-            MovieModel movie);
+        public Task<(MovieModel?, bool success, string message)> DeleteMovieById(int id);
+        public Task<(MovieModel?, bool success, string message)> UpdateMovieById(MovieModel movie);
     }
 }

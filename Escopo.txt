@@ -4,10 +4,11 @@ Linguagem C#
 
 CRUD
 - Criar um filme - OK
-- Deletar um filme
-- Atualizar um filme
+- Deletar um filme - OK
+- Atualizar um filme - OK
 - Pegar um filme - OK
 - Pegar filmes por paginação - OK
+- Passar no patch a data de atualização - OK
 
 AUTENTICAÇÃO
 - Realizar login para usar a api

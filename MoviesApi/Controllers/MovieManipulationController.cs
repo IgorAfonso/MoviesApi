@@ -4,22 +4,20 @@ using MoviesApi.Services.Interfaces;
 
 namespace MoviesApi.Controllers
 {
-    public class MovieManipulationController : BaseController
+    public class MovieManipulationController(IMovieManipulationService movieManipulationService) : BaseController
     {
-        public readonly IMovieManipulationService _movieManipulationService;
-        public MovieManipulationController(IMovieManipulationService movieManipulationService)
-        {
-            _movieManipulationService = movieManipulationService;
-        }
+        private readonly IMovieManipulationService _movieManipulationService = movieManipulationService;
 
         [HttpGet()]
-        [Route("/getMovie")]
+        [Route("/get-movie-by-name")]
         public async Task<IActionResult> GetMovieByName([FromQuery] string? movieName)
         {
             try
             {
                 var result = await _movieManipulationService.GetMovieByName(movieName);
-                return !result.success ? CustomResponse(null, false, result.message) : CustomResponse(result.Item1, result.success, result.message);
+                return !result.success 
+                    ? CustomResponse(null, false, result.message) 
+                    : CustomResponse(result.Item1, result.success, result.message);
             }
             catch (Exception ex)
             {
@@ -29,7 +27,7 @@ namespace MoviesApi.Controllers
         }
 
         [HttpGet()]
-        [Route("/getMoviesPaginated")]
+        [Route("/get-movies-paginated")]
         public async Task<IActionResult> GetMovieByName([FromQuery] int pageNumber, [FromQuery] int pageSize)
         {
             try
@@ -53,7 +51,7 @@ namespace MoviesApi.Controllers
         }
 
         [HttpPost()]
-        [Route("/postMovie")]
+        [Route("/create-movie")]
         public async Task<IActionResult> InsertMovie([FromBody] MovieModel movieObject)
         {
             try
@@ -68,20 +66,34 @@ namespace MoviesApi.Controllers
             }
         }
 
-        [HttpPatch()]
-        [Route("/updateMovie")]
-        public async Task<IActionResult> UpdateMovie([FromQuery] int MovieId, [FromBody] MovieModel movie)
+        [HttpDelete()]
+        [Route("/delete-movie")]
+        public async Task<IActionResult> DeleteMovie([FromQuery] int movieId)
         {
             try
             {
-                var result = await _movieManipulationService.UpdateMovieById(MovieId, movie);
+                var result = await _movieManipulationService.DeleteMovieById(movieId);
+                return !result.success 
+                    ? CustomResponse(null, false, result.message) 
+                    : CustomResponse(result.Item1, result.success, result.message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, ex.Message);
+            }
+        }
 
-                if (!result.success)
-                {
-                    return CustomResponse(null, false, result.message);
-                }
-                
-                return CustomResponse(result.Item1, result.success, result.message);
+        [HttpPut()]
+        [Route("/update-movie")]
+        public async Task<IActionResult> DeleteMovie([FromBody] MovieModel movieObject)
+        {
+            try
+            {
+                var result = await _movieManipulationService.UpdateMovieById(movieObject);
+                return !result.success ?
+                    CustomResponse(null, false, result.message)
+                    : CustomResponse(result.Item1, result.success, result.message);
             }
             catch (Exception ex)
             {
