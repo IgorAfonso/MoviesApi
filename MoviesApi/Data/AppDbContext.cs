@@ -6,6 +6,7 @@ namespace MoviesApi.Data;
 public class AppDbContext : DbContext
 {
     public DbSet<MovieModel> Movies { get; set; }
+    public DbSet<UserModel> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

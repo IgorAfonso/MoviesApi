@@ -11,12 +11,14 @@ CRUD
 - Passar no patch a data de atualização - OK
 
 AUTENTICAÇÃO
-- Realizar login para usar a api
 - Inserir novo usuário
+- Realizar login para usar a api
 - Deletar Usuário
 - Atualizar dados permitidos do usuário
+- Definir nas controllers as autenticações para cada uma
 
 EXTRAS
+- Definir Níveis de autorização
 - Devolver uma imagem de capa do filme
 - Usar postgres (Entity Framework) - OK
 - Manipular Excessões
@@ -39,4 +41,13 @@ EXTRAS
   "description": "Homens de Preto",
   "duration": "03:46:00",
   "ticketValue": 36.82
+}
+
+{
+  "username": "igor.afonso",
+  "firstName": "Igor",
+  "lastName": "Afonso",
+  "password": "123",
+  "email": "igor.afonso@teste.com",
+  "isAdmin": true
 }

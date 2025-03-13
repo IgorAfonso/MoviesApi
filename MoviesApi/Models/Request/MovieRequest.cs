@@ -1,4 +1,4 @@
-namespace MoviesApi.Models;
+namespace MoviesApi.Models.Request;
 
 public record AddMovieRequest
 {
