@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/igor_afonso/Documentos/Repository/MovieApi/MoviesApi/MoviesApi.csproj": {}
+    "/home/igor.afonso/Documentos/MoviesApi/MoviesApi/MoviesApi.csproj": {}
   },
   "projects": {
-    "/home/igor_afonso/Documentos/Repository/MovieApi/MoviesApi/MoviesApi.csproj": {
+    "/home/igor.afonso/Documentos/MoviesApi/MoviesApi/MoviesApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/igor_afonso/Documentos/Repository/MovieApi/MoviesApi/MoviesApi.csproj",
+        "projectUniqueName": "/home/igor.afonso/Documentos/MoviesApi/MoviesApi/MoviesApi.csproj",
         "projectName": "MoviesApi",
-        "projectPath": "/home/igor_afonso/Documentos/Repository/MovieApi/MoviesApi/MoviesApi.csproj",
-        "packagesPath": "/home/igor_afonso/.nuget/packages/",
-        "outputPath": "/home/igor_afonso/Documentos/Repository/MovieApi/MoviesApi/obj/",
+        "projectPath": "/home/igor.afonso/Documentos/MoviesApi/MoviesApi/MoviesApi.csproj",
+        "packagesPath": "/home/igor.afonso/.nuget/packages/",
+        "outputPath": "/home/igor.afonso/Documentos/MoviesApi/MoviesApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/igor_afonso/.nuget/NuGet/NuGet.Config"
+          "/home/igor.afonso/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,12 +32,21 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.13, )"
@@ -47,6 +56,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.13, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.1, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
@@ -80,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.114/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.408/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

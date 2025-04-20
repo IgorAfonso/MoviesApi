@@ -1,4 +1,4 @@
-Api com foco em trainamento.
+Api com foco em treinamento.
 
 Linguagem C#
 
@@ -11,7 +11,8 @@ CRUD
 - Passar no patch a data de atualização - OK
 
 AUTENTICAÇÃO
-- Inserir novo usuário
+- Hashear Senha - OK
+- Inserir novo usuário - OK
 - Realizar login para usar a api
 - Deletar Usuário
 - Atualizar dados permitidos do usuário
@@ -25,6 +26,17 @@ EXTRAS
 - Corrigir bug de paginação (com muitos dados vai quebrar)
 - Implementar validações no UpdateMovie e no InsertMovie para não permitir valores faltando
 
+TESTE USER:
+{
+  "username": "igor.afonso",
+  "firstName": "Igor",
+  "lastName": "Afonso",
+  "password": "1234",
+  "email": "igor@teste",
+  "isAdmin": true
+}
+
+TESTE FILME:
 {
   "title": "O Resgate do Soldado Ryan",
   "createDate": "2025-01-07T00:39:24.165Z",

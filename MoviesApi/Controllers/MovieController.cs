@@ -4,19 +4,20 @@ using MoviesApi.Services.Interfaces;
 
 namespace MoviesApi.Controllers
 {
-    public class MovieManipulationController(IMovieManipulationService movieManipulationService) : BaseController
+    [ApiController]
+    [Route("api/v1/movie")]
+    public class MovieController(IMovieManipulationService movieManipulationService) : BaseController
     {
         private readonly IMovieManipulationService _movieManipulationService = movieManipulationService;
 
-        [HttpGet()]
-        [Route("/get-movie-by-name")]
-        public async Task<IActionResult> GetMovieByName([FromQuery] string? movieName)
+        [HttpGet("{name}")]
+        public async Task<IActionResult> GetMovieByName(string? name)
         {
             try
             {
-                var result = await _movieManipulationService.GetMovieByName(movieName);
+                var result = await _movieManipulationService.GetMovieByName(name);
                 return !result.success 
-                    ? CustomResponse(null, false, result.message) 
+                    ? CustomResponse(null, false, result.message)
                     : CustomResponse(result.Item1, result.success, result.message);
             }
             catch (Exception ex)
@@ -26,8 +27,7 @@ namespace MoviesApi.Controllers
             }
         }
 
-        [HttpGet()]
-        [Route("/get-movies-paginated")]
+        [HttpGet("paginated")]
         public async Task<IActionResult> GetMovieByName([FromQuery] int pageNumber, [FromQuery] int pageSize)
         {
             try
@@ -36,12 +36,9 @@ namespace MoviesApi.Controllers
                     pageNumber,
                     pageSize);
 
-                if (!result.success)
-                {
-                    return CustomResponse(null, false, result.message);
-                }
-
-                return CustomResponse(result.Item1, result.success, result.message);
+                return !result.success ? 
+                    CustomResponse(null, false, result.message) : 
+                    CustomResponse(result.Item1, result.success, result.message);
             }
             catch (Exception ex)
             {
@@ -51,7 +48,6 @@ namespace MoviesApi.Controllers
         }
 
         [HttpPost()]
-        [Route("/create-movie")]
         public async Task<IActionResult> InsertMovie([FromBody] MovieModel movieObject)
         {
             try
@@ -67,7 +63,6 @@ namespace MoviesApi.Controllers
         }
 
         [HttpDelete()]
-        [Route("/delete-movie")]
         public async Task<IActionResult> DeleteMovie([FromQuery] int movieId)
         {
             try
@@ -85,7 +80,6 @@ namespace MoviesApi.Controllers
         }
 
         [HttpPut()]
-        [Route("/update-movie")]
         public async Task<IActionResult> DeleteMovie([FromBody] MovieModel movieObject)
         {
             try

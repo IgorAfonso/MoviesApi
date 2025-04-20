@@ -10,7 +10,8 @@ namespace MoviesApi.Config
         {
             services.AddScoped<IMovieManipulationService, MovieManipulationService>();
             services.AddScoped<AppDbContext>();
-            services.AddSingleton<IUserService, UserService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IHashService, HashService>();
         }
     }
 }

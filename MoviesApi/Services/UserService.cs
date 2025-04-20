@@ -5,10 +5,9 @@ using MoviesApi.Services.Interfaces;
 
 namespace MoviesApi.Services;
 
-public class UserService(AppDbContext iDbContext) : IUserService
+public class UserService(AppDbContext iDbContext, IHashService hashService) : IUserService
 {
-    private readonly Dictionary<int, string> _usernameDictionary =  new Dictionary<int, string>();
-    private readonly Dictionary<int, string> _emailDictionary =  new Dictionary<int, string>();
+    private IHashService _hashService = hashService;
     public async Task<(UserModel? user, bool, string)> CreateNewUserService(CreateUserRequest user)
     {
         var userModel = new UserModel()
@@ -17,38 +16,32 @@ public class UserService(AppDbContext iDbContext) : IUserService
             Username = user.Username,
             FirstName = user.FirstName,
             LastName = user.LastName,
-            Password = user.Password,
+            Password = _hashService.HashPassword(user.Password),
             Email = user.Email,
             IsAdmin = user.IsAdmin
         };
         
-        if (_usernameDictionary.ContainsValue(user.Username))
-            return (null, false, "Username already exists");
-        
-        if (_emailDictionary.ContainsValue(user.Email))
-            return (null, false, "Email already exists");
-        
         try
         {
+            var userExists = iDbContext.Users
+                .Where(x => x.Username == userModel.Username)
+                .Select(x => x.Id)
+                .Count();
+            
+            var emailExists = iDbContext.Users
+                .Where(x => x.Email == userModel.Email)
+                .Select(x => x.Id)
+                .Count();
+
+            if (userExists != 0 || emailExists != 0)
+                return (null, false, "User or email already exists");
+            
             iDbContext.Users.Add(userModel);
             var result = await iDbContext.SaveChangesAsync();
 
-            if (result.Equals(0))
-                return (null, false, "Failed To Create New User");
-            
-            _usernameDictionary.Add(
-                _usernameDictionary.Count > 0 
-                    ? _usernameDictionary.Last().Key + 1 
-                    : 1,
-                user.Username);
-            
-            _emailDictionary.Add(
-                _emailDictionary.Count > 0 
-                    ? _emailDictionary.Last().Key + 1
-                : 1, 
-                user.Email);
-            
-            return (user: userModel, true, "Success To Create New User");
+            return result.Equals(0) ?
+                (null, false, "Failed To Create New User") : 
+                (user: userModel, true, "Success To Create New User");
         }
         catch (Exception e)
         {
