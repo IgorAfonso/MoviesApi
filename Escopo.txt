@@ -25,6 +25,7 @@ EXTRAS
 - Manipular Excessões
 - Corrigir bug de paginação (com muitos dados vai quebrar)
 - Implementar validações no UpdateMovie e no InsertMovie para não permitir valores faltando
+- Ajustar todos os retornos com seus devidos códigos de erro
 
 TESTE USER:
 {

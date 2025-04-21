@@ -33,10 +33,17 @@ namespace MoviesApi.Controllers
 
         protected IActionResult PostCustomResponse(object? responseObject = null, bool isSuccess = false, string returnMessage = "")
         {
-            
+            if (isSuccess && responseObject is null)
+                return Created();
+
             if (isSuccess)
             {
-                return Created();
+                return Ok(new
+                {
+                    success = isSuccess,
+                    message = returnMessage,
+                    data = responseObject
+                });
             }
 
             return BadRequest(new

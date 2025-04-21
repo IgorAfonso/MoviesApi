@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using MoviesApi.Models;
 using MoviesApi.Models.Request;
 using MoviesApi.Services.Interfaces;
 

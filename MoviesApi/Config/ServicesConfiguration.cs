@@ -12,6 +12,8 @@ namespace MoviesApi.Config
             services.AddScoped<AppDbContext>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IHashService, HashService>();
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IAuthService, AuthService>();
         }
     }
 }

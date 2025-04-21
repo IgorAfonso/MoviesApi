@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MoviesApi.Models;
 using MoviesApi.Services.Interfaces;
 
 namespace MoviesApi.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/v1/movie")]
     public class MovieController(IMovieManipulationService movieManipulationService) : BaseController
     {
