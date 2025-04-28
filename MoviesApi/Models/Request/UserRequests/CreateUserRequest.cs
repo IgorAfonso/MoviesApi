@@ -1,4 +1,4 @@
-namespace MoviesApi.Models.Request;
+namespace MoviesApi.Models.Request.UserRequests;
 
 public class CreateUserRequest
 {

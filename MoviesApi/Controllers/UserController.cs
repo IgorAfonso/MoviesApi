@@ -1,5 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MoviesApi.Models.Request;
+using MoviesApi.Models.Request.UserRequests;
 using MoviesApi.Services.Interfaces;
 
 namespace MoviesApi.Controllers;
@@ -15,5 +16,16 @@ public class UserController(IUserService userService) : BaseController
     {
         var insertService = await _userService.CreateNewUserService(user);
         return PostCustomResponse(insertService.user,  insertService.Item2, insertService.Item3);
+    }
+
+    [Authorize]
+    [HttpPatch()]
+    public async Task<IActionResult> UpdateUserInformation([FromQuery] Guid idUser, [FromBody] UpdateUserRequest userUpdateRequest)
+    {
+        var isSuperUser = await _userService.IsSuperUser(idUser);
+
+        return isSuperUser ? 
+            PostCustomResponse(null, true, "Successfully updated user") :
+            PostCustomResponse(null, false, "Failed to update user");
     }
 }

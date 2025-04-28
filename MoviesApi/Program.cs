@@ -7,34 +7,41 @@ using MoviesApi.Config;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-// builder.Services.AddSwaggerGen(c =>
-// {
-//     c.SwaggerDoc("3.1.0", new OpenApiInfo { Title = "Meu API", Version = "3.1.0" });
-//
-//     // 🔐 Configuração do JWT Bearer
-//     var securityScheme = new OpenApiSecurityScheme
-//     {
-//         Name = "Authorization",
-//         Type = SecuritySchemeType.Http,
-//         Scheme = "bearer",
-//         BearerFormat = "JWT",
-//         In = ParameterLocation.Header,
-//         Description = "Insira o token JWT assim: **Bearer seu_token_aqui**"
-//     };
-//
-//     var securityRequirement = new OpenApiSecurityRequirement
-//     {
-//         { securityScheme, new[] { "Bearer" } }
-//     };
-//
-//     c.AddSecurityDefinition("Bearer", securityScheme);
-//     c.AddSecurityRequirement(securityRequirement);
-// });
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "MoviesAPI", Version = "v1" });
+    
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "Enter the JWT token like this: Bearer {your token}",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                },
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header
+            },
+            new List<string>()
+        }
+    });
+});
 
 //Add Dependency Injection
 builder.Services.RegisterServices();
@@ -53,8 +60,8 @@ builder.Services.AddAuthentication(options =>
 
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuer = false, // ← NÃO valida o issuer
-            ValidateAudience = false, // ← NÃO valida o audience
+            ValidateIssuer = false,
+            ValidateAudience = false,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(key)
@@ -68,7 +75,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "MoviesApi V1");
+        c.RoutePrefix = string.Empty;
+    });
 }
 
 app.UseHttpsRedirection();

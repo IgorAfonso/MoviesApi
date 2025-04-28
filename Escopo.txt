@@ -13,7 +13,7 @@ CRUD
 AUTENTICAÇÃO
 - Hashear Senha - OK
 - Inserir novo usuário - OK
-- Realizar login para usar a api
+- Realizar login para usar a api - OK
 - Deletar Usuário
 - Atualizar dados permitidos do usuário
 - Definir nas controllers as autenticações para cada uma

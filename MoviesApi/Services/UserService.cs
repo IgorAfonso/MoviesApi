@@ -1,6 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 using MoviesApi.Data;
 using MoviesApi.Models;
 using MoviesApi.Models.Request;
+using MoviesApi.Models.Request.UserRequests;
 using MoviesApi.Services.Interfaces;
 
 namespace MoviesApi.Services;
@@ -48,5 +50,15 @@ public class UserService(AppDbContext iDbContext, IHashService hashService) : IU
             Console.WriteLine(e);
             return (null, false, "Internal API Error To Create New User. Contact a administrator");
         }
+    }
+
+    public async Task<bool> IsSuperUser(Guid userId)
+    {
+        var result = await iDbContext.Users
+            .Where(x => x.Id == userId)
+            .Select(x => x.IsAdmin)
+            .FirstOrDefaultAsync();
+
+        return result;
     }
 }
