@@ -1,4 +1,4 @@
-namespace MoviesApi.Models.Request.UserRequests;
+namespace MoviesApi.Models.Request.UsersRequests;
 
 public class UpdateUserRequest
 {

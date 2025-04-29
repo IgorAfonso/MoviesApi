@@ -14,18 +14,16 @@ AUTENTICAÇÃO
 - Hashear Senha - OK
 - Inserir novo usuário - OK
 - Realizar login para usar a api - OK
-- Deletar Usuário
-- Atualizar dados permitidos do usuário
-- Definir nas controllers as autenticações para cada uma
+- Deletar Usuário - OK
+- Atualizar dados permitidos do usuário - OK
+- Get com dados do usuário por Id. - OK
+- Definir nas controllers as autenticações para cada uma - OK
 
 EXTRAS
-- Definir Níveis de autorização
+- Definir Níveis de autorização - Validar Token, nos endpoint de delete e path, para identificar se o usuário logado é o dono do cadastro.
 - Devolver uma imagem de capa do filme
 - Usar postgres (Entity Framework) - OK
-- Manipular Excessões
-- Corrigir bug de paginação (com muitos dados vai quebrar)
-- Implementar validações no UpdateMovie e no InsertMovie para não permitir valores faltando
-- Ajustar todos os retornos com seus devidos códigos de erro
+- Manipular Excessões - OK
 
 TESTE USER:
 {

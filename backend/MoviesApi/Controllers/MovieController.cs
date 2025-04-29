@@ -25,7 +25,9 @@ namespace MoviesApi.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, new {
+                    message = "Internal server error",
+                });
             }
         }
 
@@ -45,7 +47,9 @@ namespace MoviesApi.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, new {
+                    message = "Internal server error",
+                });
             }
         }
 
@@ -60,7 +64,9 @@ namespace MoviesApi.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, new {
+                    message = "Internal server error",
+                });
             }
         }
 
@@ -77,7 +83,9 @@ namespace MoviesApi.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, new {
+                    message = "Internal server error",
+                });
             }
         }
 
@@ -94,7 +102,9 @@ namespace MoviesApi.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, new {
+                    message = "Internal server error",
+                });
             }
         }
     }
