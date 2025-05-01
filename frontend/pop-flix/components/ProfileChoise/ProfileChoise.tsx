@@ -41,7 +41,7 @@ export default function ProfileChoise() {
   });
 
   return (
-    <div className="text-center text-[30px] md:text-[50px] font-netflix">
+    <div className="text-center min-h-screen text-[30px] md:text-[50px] font-netflix">
       <p>Quem vai assistir ?</p>
       <div className="flex md:flex-row justify-center">
         {
